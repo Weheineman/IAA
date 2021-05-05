@@ -53,3 +53,5 @@ dkms.conf
 
 # OSX is such a nice OS.
 .DS_STORE
+
+.vscode
