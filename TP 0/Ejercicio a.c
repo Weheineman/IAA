@@ -18,9 +18,7 @@ double probabilityDensity(point *x, point *center, double standardDeviation)
   return ans;
 }
 
-/* /* */ * /
-
-    void generate_points(FILE *dataFile, int amount, double C, point *center, int class)
+void generate_points(FILE *dataFile, int amount, double C, point *center, int class)
 {
   double standardDeviation = C * sqrt(center->dimension);
   double rangeDelta = 5 * standardDeviation;
@@ -83,7 +81,7 @@ int main(int argc, char *argv[])
   // Class 1
   double class1Coords[d];
   for (int i = 0; i < d; ++i)
-    class0Coords[i] = -1;
+    class1Coords[i] = -1;
   point *class1Center = point_new_init(d, class1Coords);
   int class1Size = n - class0Size;
   generate_points(dataFile, class1Size, C, class1Center, 1);
