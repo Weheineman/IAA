@@ -55,3 +55,9 @@ dkms.conf
 .DS_STORE
 
 .vscode
+
+c4.5
+
+neural
+
+*.djvu
