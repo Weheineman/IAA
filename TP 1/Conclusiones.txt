@@ -1,0 +1,36 @@
+Ejercicio 4
+En "spiral150" hay muy pocos puntos de entrenamiento, por lo que aprende una única regla simple. Es un árbol malo para predecir.
+En "spiral600" hay más puntos de entrenamiento, pero sólo alcanza para aprender dos reglas aparentemente independientes. Es un árbol malo para predecir, apenas es mejor que el anterior.
+En "spiral3000" la forma se asemeja mucho más al original. Las fronteras están algo difuminadas pero no hay prácticamente puntos de una clase en medio de la otra clse, lo cual no es trivial en coordenadas cartesianas.
+Concluyo que el factor limitante en el aprendizaje hasta 3000 puntos fue la cantidad de datos y no el modelo.
+
+Ejercicio 5
+Veo que la intuición de "tener muchos datos de prueba es bueno" se cumple, ya que el error de test disminuye con el tamaño del training dataset. Esto es porque la muestra se vuelve más representativa y el modelo puede aprender sobre propiedades que más probablemente son las que determinan las clases en la población en general (esto se refleja también en que el error de training aumenta hasta encontrarse con el de test). También observo que el efecto no ocurre infinitamente, es decir, llega un punto donde lo que impide conseguir más precisión es el método de aprendizaje y no los datos.
+En el dataset "diagonal" el tamaño del árbol aumenta hasta cierto tamaño. Asumo que por tener mayor desviación estándar es más difícil de aprender y el modelo necesita más reglas.
+En el dataset "paralelo" el tamaño del árbol no varía, por lo que entiendo que la cantidad de reglas que se puede aprender de un dataset pequeño es suficiente, y tener más casos de prueba sólo permite mejorar las cotas de estas reglas.
+
+Ejercicio 6
+Observo que, naturalmente, al aumentar el ruido (por haber mayor desviación estándar), el error aumenta (ya que sucesos "desfavorables" o "extraños" se vuelven más frecuentes). El prunning no tiene influencia alguna sobre la resistencia al ruido (lo cual va de la mano con mi intuición, ya que no veo relación entre la cantidad de reglas y la capacidad de ignorar outliers). Y si bien los clasificadores ideales se comportan mejor que el resto, su error de predicción crece de una forma similar.
+Me llevo la idea de que los árboles de decisión son muy susceptibles al ruido (sin importar su tamaño o lo buenos que sean) y debo asegurarme de tener datos de buena calidad si es el modelo que deseo emplear.
+
+Ejercicio 6.1
+Como conozco la distribución que genera a los puntos, puedo hacer un clasificador ideal que elige para un punto dado cuál es su clase más probable (es decir, qué clase tiene mayor probabilidad de generar un punto en esa posición). Para ello, como ambas clases son la misma distribución con distinto centro y la función de densidad de probabilidad decrece con la distancia, basta con calcular las distancias a ambos centros posibles y elegir el más cercano. Hice esto y verifiqué su efectividad para el archivo .test de 10000 entradas.
+Para estos valores de C: [  0.5,  1.0,    1.5,   2.0,   2.5]
+Valor mínimo diagonal:   [ 2.33, 15.89, 25.61, 31.40, 34.37]
+Valor mínimo paralelo:   [ 2.43, 15.97, 25.64, 31.07, 34.80]
+Me llama la atención que la diferencia en desviación estándar no cause que el diagonal sea notoriamente peor.
+
+Ejercicio 7
+Estoy un poco sorprendido por este resultado.
+Sólo hay 250 puntos para aprender, por lo que el modelo sobreajusta para estos (se ve claramente en la disminución del error de entrenamiento). Además, al introducir más dimensiones, el information gain está más diuído entre los parámetros. Resulta natural entonces que el error en test crezca para ambos casos. En "diagonal" esto se ve exacerbado por el crecimiento de la desviación estándar con el aumento de dimensiones. De todas formas, no me cierra que la desviación depende linealmente de sqrt(d) y el crecimiento del error es exponencial.
+
+Ejercicio 8
+Estoy decepcionado de lo mucho que tardé en darme cuenta que leer el .names es importante.
+Grafiqué los puntos según las dos primeras coordenadas. Si tienen igual signo, es de clase 1. Si no, es de clase 0. No sé qué pasa si alguna coordenada es 0, así que voy a ignorar ese caso.
+El árbol más simple sería uno de esta pinta:
+                    x
+        >0                      <0
+        y                        y
+  >0         <0            >0         <0
+clase 0    clase 1      clase 1     clase 0
+El problema está en que para construir el árbol buscamos ganar información a partir de sólo un atributo. En este caso no sirve de nada, ya que sólo la conjunción de x e y determinan la clase (y parecieran estar distribuidos equitativamente en [-1, 1] cada uno). Por lo que el information gain para un sólo atributo es nulo y c4.5 no puede hacer nada.
