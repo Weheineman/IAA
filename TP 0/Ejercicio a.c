@@ -5,7 +5,7 @@
 #include <math.h>
 #include "point.h"
 
-double probabilityDensity(point *x, point *center, double standardDeviation)
+double pointProbabilityDensity(point *x, point *center, double standardDeviation)
 {
   double ans = 1;
   double pi = acos(-1);
@@ -16,6 +16,19 @@ double probabilityDensity(point *x, point *center, double standardDeviation)
     ans *= 1.0 / denominator * exp(exponent);
   }
   return ans;
+}
+
+double probabilityDensity(double xValue, double standardDeviation){
+  double pi = acos(-1);
+  double denominator = sqrt(2 * pi) * standardDeviation;
+  double exponent = -0.5 / pow(standardDeviation, 2) * pow(x->coordinates[i] - center->coordinates[i], 2);
+  return denominator * exp(exponent);
+}
+
+double generateCoordinate(double center, double standardDeviation){
+  double rangeDelta = 5 * standardDeviation;
+  double coordinate = random_from_range(center - rangeDelta, center + rangeDelta);
+  double maxY = probabilityDensity(center, center, standardDeviation);
 }
 
 void generate_points(FILE *dataFile, int amount, double C, point *center, int class)
