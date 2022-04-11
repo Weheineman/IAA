@@ -1,0 +1,271 @@
+Por que corno no usamos el error de clasificacion? Claramente esto es de clasificacion.
+
+(pythiger) [elisa@elisa-gianni-te-ama-mas a]$ ./a_plotter.py --run
+
+Arquitectura de la red: 2:6:1
+Archivo de patrones: dos_elipses
+Cantidad total de patrones: 500
+Cantidad de patrones de entrenamiento: 400
+Cantidad de patrones de validacion: 100
+Cantidad de patrones de test: 2000
+Epocas: 40000
+Learning Rate: 0.100000
+Momentum: 0.000000
+Frecuencia para grabar resultados: 200 EPOCAS
+Archivo con sinapsis iniciales: 0.WTS
+Semilla para la funcion rand(): 1622506264
+Fin del entrenamiento.
+
+Error final:
+Entrenamiento(est):0.080859
+Entrenamiento(med):0.078776
+Validacion:0.081197
+Test:0.075264
+
+Error minimo en validacion:
+Epoca:35200
+Validacion:0.065014
+Test:0.066526
+Test discreto:5.850000%
+
+
+
+(pythiger) [elisa@elisa-gianni-te-ama-mas a]$ ./a_plotter.py --run
+
+Arquitectura de la red: 2:6:1
+Archivo de patrones: dos_elipses
+Cantidad total de patrones: 500
+Cantidad de patrones de entrenamiento: 400
+Cantidad de patrones de validacion: 100
+Cantidad de patrones de test: 2000
+Epocas: 40000
+Learning Rate: 0.100000
+Momentum: 0.500000
+Frecuencia para grabar resultados: 200 EPOCAS
+Archivo con sinapsis iniciales: 0.WTS
+Semilla para la funcion rand(): 1622506658
+Fin del entrenamiento.
+
+Error final:
+Entrenamiento(est):0.150768
+Entrenamiento(med):0.131901
+Validacion:0.142727
+Test:0.124696
+
+Error minimo en validacion:
+Epoca:35000
+Validacion:0.131251
+Test:0.116789
+Test discreto:19.300000%
+
+
+
+(pythiger) [elisa@elisa-gianni-te-ama-mas a]$ ./a_plotter.py --run
+
+Arquitectura de la red: 2:6:1
+Archivo de patrones: dos_elipses
+Cantidad total de patrones: 500
+Cantidad de patrones de entrenamiento: 400
+Cantidad de patrones de validacion: 100
+Cantidad de patrones de test: 2000
+Epocas: 40000
+Learning Rate: 0.100000
+Momentum: 0.900000
+Frecuencia para grabar resultados: 200 EPOCAS
+Archivo con sinapsis iniciales: 0.WTS
+Semilla para la funcion rand(): 1622506940
+Fin del entrenamiento.
+
+Error final:
+Entrenamiento(est):0.229455
+Entrenamiento(med):0.176374
+Validacion:0.158711
+Test:0.169039
+
+Error minimo en validacion:
+Epoca:23000
+Validacion:0.121764
+Test:0.123891
+Test discreto:15.850000%
+
+
+
+(pythiger) [elisa@elisa-gianni-te-ama-mas a]$ ./a_plotter.py --run
+
+Arquitectura de la red: 2:6:1
+Archivo de patrones: dos_elipses
+Cantidad total de patrones: 500
+Cantidad de patrones de entrenamiento: 400
+Cantidad de patrones de validacion: 100
+Cantidad de patrones de test: 2000
+Epocas: 40000
+Learning Rate: 0.010000
+Momentum: 0.000000
+Frecuencia para grabar resultados: 200 EPOCAS
+Archivo con sinapsis iniciales: 0.WTS
+Semilla para la funcion rand(): 1622507117
+Fin del entrenamiento.
+
+Error final:
+Entrenamiento(est):0.126809
+Entrenamiento(med):0.126030
+Validacion:0.126578
+Test:0.116991
+
+Error minimo en validacion:
+Epoca:31600
+Validacion:0.123442
+Test:0.115962
+Test discreto:19.149999%
+
+
+
+(pythiger) [elisa@elisa-gianni-te-ama-mas a]$ ./a_plotter.py --run
+
+Arquitectura de la red: 2:6:1
+Archivo de patrones: dos_elipses
+Cantidad total de patrones: 500
+Cantidad de patrones de entrenamiento: 400
+Cantidad de patrones de validacion: 100
+Cantidad de patrones de test: 2000
+Epocas: 40000
+Learning Rate: 0.010000
+Momentum: 0.500000
+Frecuencia para grabar resultados: 200 EPOCAS
+Archivo con sinapsis iniciales: 0.WTS
+Semilla para la funcion rand(): 1622507314
+Fin del entrenamiento.
+
+Error final:
+Entrenamiento(est):0.068090
+Entrenamiento(med):0.065227
+Validacion:0.076405
+Test:0.069337
+
+Error minimo en validacion:
+Epoca:37200
+Validacion:0.071867
+Test:0.070222
+Test discreto:5.550000%
+
+
+
+
+(pythiger) [elisa@elisa-gianni-te-ama-mas a]$ ./a_plotter.py --run
+
+Arquitectura de la red: 2:6:1
+Archivo de patrones: dos_elipses
+Cantidad total de patrones: 500
+Cantidad de patrones de entrenamiento: 400
+Cantidad de patrones de validacion: 100
+Cantidad de patrones de test: 2000
+Epocas: 40000
+Learning Rate: 0.010000
+Momentum: 0.900000
+Frecuencia para grabar resultados: 200 EPOCAS
+Archivo con sinapsis iniciales: 0.WTS
+Semilla para la funcion rand(): 1622507496
+Fin del entrenamiento.
+
+Error final:
+Entrenamiento(est):0.065958
+Entrenamiento(med):0.058948
+Validacion:0.063478
+Test:0.061022
+
+Error minimo en validacion:
+Epoca:30000
+Validacion:0.055853
+Test:0.059511
+Test discreto:4.950000%
+
+
+
+(pythiger) [elisa@elisa-gianni-te-ama-mas a]$ ./a_plotter.py --run
+
+Arquitectura de la red: 2:6:1
+Archivo de patrones: dos_elipses
+Cantidad total de patrones: 500
+Cantidad de patrones de entrenamiento: 400
+Cantidad de patrones de validacion: 100
+Cantidad de patrones de test: 2000
+Epocas: 40000
+Learning Rate: 0.001000
+Momentum: 0.000000
+Frecuencia para grabar resultados: 200 EPOCAS
+Archivo con sinapsis iniciales: 0.WTS
+Semilla para la funcion rand(): 1622507790
+Fin del entrenamiento.
+
+Error final:
+Entrenamiento(est):0.131908
+Entrenamiento(med):0.131473
+Validacion:0.135627
+Test:0.123231
+
+Error minimo en validacion:
+Epoca:39600
+Validacion:0.135439
+Test:0.123418
+Test discreto:19.400001%
+
+
+
+(pythiger) [elisa@elisa-gianni-te-ama-mas a]$ ./a_plotter.py --run
+
+Arquitectura de la red: 2:6:1
+Archivo de patrones: dos_elipses
+Cantidad total de patrones: 500
+Cantidad de patrones de entrenamiento: 400
+Cantidad de patrones de validacion: 100
+Cantidad de patrones de test: 2000
+Epocas: 40000
+Learning Rate: 0.001000
+Momentum: 0.500000
+Frecuencia para grabar resultados: 200 EPOCAS
+Archivo con sinapsis iniciales: 0.WTS
+Semilla para la funcion rand(): 1622507965
+Fin del entrenamiento.
+
+Error final:
+Entrenamiento(est):0.123375
+Entrenamiento(med):0.122805
+Validacion:0.149186
+Test:0.117850
+
+Error minimo en validacion:
+Epoca:25600
+Validacion:0.149117
+Test:0.118285
+Test discreto:19.450000%
+
+
+
+
+(pythiger) [elisa@elisa-gianni-te-ama-mas a]$ ./a_plotter.py --run
+
+Arquitectura de la red: 2:6:1
+Archivo de patrones: dos_elipses
+Cantidad total de patrones: 500
+Cantidad de patrones de entrenamiento: 400
+Cantidad de patrones de validacion: 100
+Cantidad de patrones de test: 2000
+Epocas: 40000
+Learning Rate: 0.001000
+Momentum: 0.900000
+Frecuencia para grabar resultados: 200 EPOCAS
+Archivo con sinapsis iniciales: 0.WTS
+Semilla para la funcion rand(): 1622508185
+Fin del entrenamiento.
+
+Error final:
+Entrenamiento(est):0.119125
+Entrenamiento(med):0.118097
+Validacion:0.155940
+Test:0.116201
+
+Error minimo en validacion:
+Epoca:40000
+Validacion:0.155940
+Test:0.116201
+Test discreto:19.499999%
