@@ -46,7 +46,10 @@ class ClassHistogram:
         m = 1
         p = 1 / self.binCount
         for point in pointList:
-            binList = [self.calculate_bin(attribute, value) for attribute, value in enumerate(point)]
+            binList = [
+                self.calculate_bin(attribute, value)
+                for attribute, value in enumerate(point)
+            ]
             for start in range(len(binList)):
                 valueTuple = tuple(binList[start:])
                 if self.conditionalProbability.get(valueTuple):
@@ -78,7 +81,10 @@ class ClassHistogram:
 
     def probability(self, attributeList: List[float]) -> float:
         if attributeList:
-            binList = [self.calculate_bin(attribute, value) for attribute, value in enumerate(attributeList)]
+            binList = [
+                self.calculate_bin(attribute, value)
+                for attribute, value in enumerate(attributeList)
+            ]
             # P(x1, ..., xn | c) = P(x1 | x2, ..., xn, c) * P(x2, ..., xn | c)
             return self.conditional_probability(binList) * self.probability(
                 attributeList[1:]
