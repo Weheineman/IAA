@@ -1,3 +1,13 @@
+# Setup
+This project uses Python version `3.8`.
+
+From the project root directory, on a [virtual Python environment](https://virtualenvwrapper.readthedocs.io/en/latest/) (or not, if you're feeling brave), run:
+```bash
+pip3 install -r requirements.txt
+```
+
+Make sure that the source directory is added to your `$PYTHONPATH` environment variable.
+
 # Ejercicio 1
 Entrego dos programas: `nb_n.py`, el programa original y `nb_n_gaussianas.py`, el programa modificado para outputear las medias y varianzas de las gaussianas.
 
@@ -118,3 +128,21 @@ def probability(self, attributeList: List[float]) -> float:
 ```
 
 Si no me equivoco, la complejidad final sería del orden de `O(n * d**2 * c)` siendo `n` la cantidad de puntos, `d` la cantidad de dimensiones y `c` la cantidad de clases. Para datasets no pequeños (sobre todo en dimensión) es inaplicable.
+
+# Ejercicio 6
+
+Bayes volvió a ser Naive para este ejercicio. No tiene sentido usar un conjunto de validación en este caso, ya que la cantidad de bins está dada por el algoritmo (y no es un parámetro a optimizar). Consecuentemente, entrego un solo programa nuevo, `nb_n_entropy_histogram.py` basado en `nb_n_histogram.py` del ejercicio 4.
+
+Tuve que cambiar bastante la estructura del programa (😢), porque estaba usando un objeto `Histogram` para cada clase de los datos. Reescribí una parte grande con `pandas` porque pasó casi un año y aprendí cosas nuevas. No fui muy feliz haciendo esa mezcla de código viejo y nuevo, aunque reconozco que me da una sensación de progreso el pensar que hace un año no entendía nada (seguro ahora tampoco entiendo tanto, pero sí entiendo más).
+
+```
+Errores:
+Entrenamiento: 3.5000000000000004%
+Test: 3.95%
+```
+
+Pero valió la pena! Dio increíblemente bien. Me resulta muy interesante que elegir bins "inteligentemente" haya mejorado tanto los errores. Chusmeando los bins vi que se concentran en los intervalos de la coordenada donde están las elipses. Como cierre dejo la predicción graficada:
+
+![dos_elipses](6/dos_elipses.png)
+
+Los bins andan hermoso. Sí se nota el problema de la dependencia de las coordenadas, al asumirlas independientes grafica dos rectángulos en los intervalos de coordenadas donde estaban las elipses.
