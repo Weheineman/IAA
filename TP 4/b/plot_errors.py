@@ -10,7 +10,7 @@ train_median = []
 valid_median = []
 test_median = []
 for k in k_list:
-    median_df =  err_df.loc[err_df["k"] == k].median(axis=0)
+    median_df = err_df.loc[err_df["k"] == k].median(axis=0)
     train_median.append(median_df["train_err"])
     valid_median.append(median_df["valid_err"])
     test_median.append(median_df["test_err"])

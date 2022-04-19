@@ -113,7 +113,7 @@ class KNearestNeighborsOpt:
             )
         else:
             test_err = 0
-        
+
         print(f"k óptimo: {self.k}")
         print(f"Error de entrenamiento: {train_err*100}%")
         print(f"Error de validación: {val_err*100}%")
@@ -123,7 +123,7 @@ class KNearestNeighborsOpt:
         # err_file = open(f"{input.file_stem}.err", "a")
         # err_file.write(f"{self.k},{train_err*100},{val_err*100},{test_err*100}\n")
         # err_file.close()
-    
+
     # Elije el k de k_list que minimiza el error de predicción en valid_df.
     def _optimize_k(self, valid_df: pd.DataFrame):
         best_k = None
@@ -137,6 +137,7 @@ class KNearestNeighborsOpt:
                 best_k = current_k
 
         self.k = best_k
+
 
 def main():
     if len(sys.argv) != 2:
