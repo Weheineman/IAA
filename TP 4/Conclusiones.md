@@ -11,8 +11,6 @@ Make sure that the source directory is added to your `$PYTHONPATH` environment v
 # Consideraciones generales
 Al igual que el TP de Naive Bayes, ya había programado bastante en este TP. Me esforcé más en refactorizarlo, pero aún así quedaron algunas mezclas.
 
-A la hora de comparar con árboles de decisión usé [`DecisionTreeClassifier` de scikit](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html?highlight=decisiontree#sklearn.tree.DecisionTreeClassifier) porque me parece que a fines de comparar resultados es lo mismo y era más rápido para mí que reaprender cómo usar la implementación de C4.5 que nos diste. Usé `criterion = "entropy"`, que entiendo funciona igual que C4.5. Por default no hace pruning y considera todas las variables en cada nodo.
-
 Cuando tuve que optimizar `k` lo hice tomando el mejor de: `[1, 2, 3, 4, 5, 10, 15, 20, 40, 60, 80, 100]`.
 
 # Ejercicio a
@@ -31,6 +29,7 @@ Ambos leen la configuración de un archivo `.knn`, los datos de entrenamiento (y
 
 `generate_errors.py` está en la carpeta `a` porque me era más fácil tenerlo en la misma carpeta que el K-NN. Los demás archivos están todos en la carpeta `b`.
 
+A la hora de comparar con árboles de decisión usé [`DecisionTreeClassifier` de scikit](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html?highlight=decisiontree#sklearn.tree.DecisionTreeClassifier) porque me parece que a fines de comparar resultados es lo mismo y era más rápido para mí que reaprender cómo usar la implementación de C4.5 que nos diste. Usé `criterion = "entropy"`, que entiendo funciona igual que C4.5. Por default no hace pruning y considera todas las variables en cada nodo.
 
 ## `espirales_anidadas`
 Archivo de configuración:
@@ -180,4 +179,14 @@ Es interesante la idea de "a dimensiones más altas el `k` óptimo aumenta", que
 
 ¡Wow! Es muy estable. Por supuesto que empeora, pero es mucho mucho mejor que el caso anterior. Esperaba mejoría, pero no tanta (esperaba que fuera notablemente peor que ANN o NB). Parece que mi idea de que va aumentando el k tiene algo de sentido.
 
+# Ejercicio d
 
+Me copié algunos archivos de `c`. La novedad es la implementación de K-NN, `nn_radius.py`, que intenta optimizar un radio en el que mira vecinos (mira todos los vecinos en ese radio). Si no hay puntos en el radio, toma la clase del punto más cercano.
+
+Para elegir `max_dist` usé 10 valores en un [intervalo logarítmicamente equiespaciado](https://numpy.org/doc/stable/reference/generated/numpy.logspace.html) entre la mínima y la máxima distancia entre dos puntos de entrenamiento.
+
+Los `radius` promedio para cada dimensión se pueden ver en el `.err`. Sólo me interesa destacar que para 8, 16 y 32 dimensiones es prácticamente 0, por lo que el clasificador se vuelve 1-NN (y consecuentemente anda igual de mal). Qué raro que el algoritmo haya elegido esos valores... imaginaba que en validación daría lo suficientemente mal para que escoja `radius` mayores.
+
+![KNNMedianGraph](d/KNNMedianGraph.png)
+
+Es sólo apenas mejor que 1-NN. Me echo la culpa a mí y a mi elección de parámetros. Quizás debería haber generado `radius` mayores (con un método distinto) para lograr `k` equivalentes mayores.
