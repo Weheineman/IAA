@@ -113,7 +113,7 @@ class KNearestNeighbors:
         else:
             test_err = 0
 
-        err_file = open(f"{input.file_stem}.err", "a")
+        err_file = open(f"k_nn_{input.file_stem}.err", "a")
         err_file.write(f"{self.k},{train_err*100},{val_err*100},{test_err*100}\n")
         err_file.close()
 

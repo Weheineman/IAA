@@ -109,7 +109,7 @@ class KNearestNeighborsOpt:
 
         if input.n_test:
             test_err = self.predict_case_list(
-                input.test_df, f"{input.file_stem}.predic"
+                input.test_df, f"k_nn_{input.file_stem}.predic"
             )
         else:
             test_err = 0
