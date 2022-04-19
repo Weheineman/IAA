@@ -43,8 +43,10 @@ for fileStem in fileStems:
             trainErrorList.append(trainError)
             testErrorList.append(testError)
             radiusList.append(radius)
-            
-            print(f"fileStem: {fileStem}, d: {d}, iter: {iteration + 1}/{iterationCount}")
+
+            print(
+                f"fileStem: {fileStem}, d: {d}, iter: {iteration + 1}/{iterationCount}"
+            )
 
         # Write: dimension,radius,trainingError,testError
         trainErrorList.sort()

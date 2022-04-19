@@ -122,9 +122,9 @@ class NearestNeighborsRadius:
         print(f"{self.radius} {train_err*100} {test_err*100}\n")
 
     def _generate_radius_list(self, train_df: pd.DataFrame):
-        coords = train_df.iloc[:, :self.n_features]
+        coords = train_df.iloc[:, : self.n_features]
         dists = squareform(pdist(coords))
-        min_dist = np.amin(dists) + np.finfo(np.float32).eps # Prevenir 0.
+        min_dist = np.amin(dists) + np.finfo(np.float32).eps  # Prevenir 0.
         max_dist = np.amax(dists)
         self.radius_list = np.logspace(np.log10(min_dist), np.log10(max_dist), 10)
 

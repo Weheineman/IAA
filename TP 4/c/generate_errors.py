@@ -37,7 +37,7 @@ for fileStem in fileStems:
         # Generate Naive Bayes error.
         for iteration in range(iterationCount):
             subprocess.run(["./" + fileStem, d, trainingSize, C])
-            
+
             completed = subprocess.run(
                 ["python", "k_nn.py", fileStem], capture_output=True, text=True
             )
@@ -56,8 +56,10 @@ for fileStem in fileStems:
             trainErrorList_opt.append(trainError)
             testErrorList_opt.append(testError)
             kList_opt.append(k)
-            
-            print(f"fileStem: {fileStem}, d: {d}, iter: {iteration + 1}/{iterationCount}")
+
+            print(
+                f"fileStem: {fileStem}, d: {d}, iter: {iteration + 1}/{iterationCount}"
+            )
 
         # Write: dimension,k,trainingError,testError
         trainErrorList_1.sort()

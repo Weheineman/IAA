@@ -77,8 +77,8 @@ class KNearestNeighborsReg:
         sorted_points = self.point_df.sort_values("query_dist")
         # Quito puntos a distancia 0.
         sorted_points = sorted_points.loc[sorted_points["query_dist"] > 0]
-        k_neighbors = sorted_points.iloc[:self.k]
-        k_neighbors["w"] = k_neighbors["query_dist"]**(-2)
+        k_neighbors = sorted_points.iloc[: self.k]
+        k_neighbors["w"] = k_neighbors["query_dist"] ** (-2)
         return (k_neighbors["w"] * k_neighbors["target"]).sum() / k_neighbors["w"].sum()
 
     # Predice el target value de una lista de puntos.
@@ -88,8 +88,8 @@ class KNearestNeighborsReg:
         case_list["predic"] = case_list.iloc[:, : self.n_features].apply(
             self.predict_target, axis=1
         )
-    
-        error = mean_squared_error(case_list["target"],case_list["predic"])
+
+        error = mean_squared_error(case_list["target"], case_list["predic"])
 
         if len(out_file):
             case_list.to_csv(out_file)
@@ -115,6 +115,7 @@ class KNearestNeighborsReg:
         err_file = open(f"k_nn_{input.file_stem}.err", "a")
         err_file.write(f"{self.k},{train_err},{val_err},{test_err}\n")
         err_file.close()
+
 
 def main():
     if len(sys.argv) != 2:
