@@ -13,6 +13,8 @@ Al igual que el TP de Naive Bayes, ya había programado bastante en este TP. Me 
 
 A la hora de comparar con árboles de decisión usé [`DecisionTreeClassifier` de scikit](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html?highlight=decisiontree#sklearn.tree.DecisionTreeClassifier) porque me parece que a fines de comparar resultados es lo mismo y era más rápido para mí que reaprender cómo usar la implementación de C4.5 que nos diste. Usé `criterion = "entropy"`, que entiendo funciona igual que C4.5. Por default no hace pruning y considera todas las variables en cada nodo.
 
+Cuando tuve que optimizar `k` lo hice tomando el mejor de: `[1, 2, 3, 4, 5, 10, 15, 20, 40, 60, 80, 100]`.
+
 # Ejercicio a
 Entrego dos programas:
 
@@ -132,8 +134,50 @@ Si bien ya sabíamos que los árboles de decisión tienen cierta robustez al rui
 
 En la predicción de árboles se ve nuevamente el bias, sólo que esta vez algunos "rectangulitos" son del color incorrecto (por el ruido). En la de K-NN no se entiende nada, porque me parezco "a lo que tengo cerca" pero dos de las cuatro dimensiones que uso me intoxican la verdadera distancia.
 
+# Ejercicio c
 
+Como siempre, considero las dimensiones `[2, 4, 8, 16, 32]`.
 
+Todos los archivos se encuentran en la carpeta `c`:
 
+* `k_nn.py` y `k_nn_optimize.py`, copias del ejercicio 1 pero que ahora outputean sólo error de entrenamiento y de test en el formato en el que lo espera `generate_errors.py`.
+* `generate_errors.py`, el script que para cada dimensión corre los generadores de datasets, el script de K-NN, escribe los errores en archivos `.err` y hace el cleanup. Dejé los parámetros igual que en los TPs anteriores (`C = 0.78`, `trainingSize = 250`, `testSize = 10000`), pero reduje la cantidad de iteraciones a 7 (sigo tomando la mediana de los errores).
+* `plot_errors.py`, el graficador.
+* `diagonal` y `paralelo`, los ejecutables que generan los datasets. Le creé a cada uno un `.knn` de configuración.
+* Gráficos de los métodos anteriores más los generados para este TP.
+
+A partir de ahora no muestro más las configuraciones de los archivos `.knn` porque creo que no aportan nada.
+
+## Métodos anteriores.
+
+![treeGraph](c/treeGraph.png)
+
+![ANNMedianGraph](c/ANNMedianGraph.png)
+
+![NBMedianGraph](c/NBMedianGraph.png)
+
+## K-NN con `k=1`
+
+![KNN_1MedianGraph](c/KNN_1MedianGraph.png)
+
+El error de training no me sirve para nada (por lo ya comentado). El error de test se dispara violentamente, es lo más parecido a lo que ocurría con `diagonal` y árboles de decisión que veo desde entonces (si bien no es tan malo). Observo que ambos problemas son igual de difíciles para el método. El aumento de la dimensionalidad y el hecho de considerar un solo vecino hace muy volátil la clasificación.
+
+## K-NN con `k` óptimo.
+Los `k` moda para cada dimensión fueron:
+```
+diagonal
+d  2,  4,  8, 16, 32
+k 10,  3, 10, 80, 20
+
+paralelo
+d  2,  4,  8, 16, 32
+k 10,  3, 15, 20, 60
+```
+
+Es interesante la idea de "a dimensiones más altas el `k` óptimo aumenta", que no es del todo verdad en este caso (pero suena razonable compensar el aumento de varianza por dimensionalidad con un `k` mayor).
+
+![KNN_optMedianGraph](c/KNN_optMedianGraph.png)
+
+¡Wow! Es muy estable. Por supuesto que empeora, pero es mucho mucho mejor que el caso anterior. Esperaba mejoría, pero no tanta (esperaba que fuera notablemente peor que ANN o NB). Parece que mi idea de que va aumentando el k tiene algo de sentido.
 
 
