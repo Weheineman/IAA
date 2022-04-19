@@ -190,3 +190,32 @@ Los `radius` promedio para cada dimensión se pueden ver en el `.err`. Sólo me 
 ![KNNMedianGraph](d/KNNMedianGraph.png)
 
 Es sólo apenas mejor que 1-NN. Me echo la culpa a mí y a mi elección de parámetros. Quizás debería haber generado `radius` mayores (con un método distinto) para lograr `k` equivalentes mayores.
+
+# Ejercicio e
+Entrego versiones modificadas de `k_nn.py` y `k_nn_optimize.py` de la carpeta `a` que hacen regresión (y acordemente se llaman `k_nn_regression.py` y `k_nn_regression_optimize.py`). También usé una copia exacta de `generate_errors.py` de `a` y `plot_errors.py` de `b`.
+
+La regresión está hecha con la cuenta vista en clase:
+![regression_formula](e/regression_formula.png)
+
+Esto me obligó a incluir un check que quite a los puntos con distancia 0 (es decir, miro los primeros `k` vecinos con distancia positiva).
+
+## Con `k` óptimo
+
+```
+k óptimo: 15
+Error de entrenamiento: 1.3463288135242617%
+Error de validación: 1.0159458700666486%
+Error de test: 1.0818026798025375%
+```
+
+¡Anduvo muy bien (y muy rápido)! Me pone contento. Es interesante cómo ahora obligar al entrenamiento a usar puntos distintos al que queremos predecir empeora el error (¡y lo vuelve el más alto de los tres!). Entiendo que es necesario, pero me parece feo que pase.
+
+## Comparación con ANN
+
+![ssp_5MSEGraph](e/ssp_5MSEGraph.png)
+
+Había muchos `gamma` para elegir. Me quedé con este gráfico porque en el informe del TP de ANN dije que me había gustado.
+
+![k_nn_ssp_err](e/k_nn_ssp_err.png)
+
+Muy bien. Veo que training sigue sufriendo de "no me puedo usar a mí mismo", lo que se nota sobre todo para k pequeños. El error de validación es muy volátil, culpo a la poca cantidad de puntos (usé 1/5 del dataset, pero son 36 puntos nada más). En comparación a ANN el MSE es un poco más que el doble, que para la diferencia abismal de velocidad (en este dataset pequeño) está más que bien. En general me llevo una imagen mucho más positiva de K-NN de lo que esperaba (tanto en clasificación como en regresión).
