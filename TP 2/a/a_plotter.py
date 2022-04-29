@@ -6,8 +6,8 @@ import sys
 import glob
 import subprocess
 
-fileStem = 'dos_elipses'
-if("--run" in sys.argv):
+fileStem = "dos_elipses"
+if "--run" in sys.argv:
     subprocess.run(["rm"] + glob.glob("*.wts"))
     subprocess.run(["rm", fileStem + ".predic"])
     subprocess.run(["rm", fileStem + ".mse"])
@@ -26,7 +26,15 @@ epochCount = [0]
 epochSaveCount = 200
 
 for line in inputFile.readlines():
-    [stochasticMseValue, trainMseValue, validationMseValue, testMseValue, clasifTrainErrValue, clasifValidationErrValue, clasifTestErrValue] = map(float, line.split())
+    [
+        stochasticMseValue,
+        trainMseValue,
+        validationMseValue,
+        testMseValue,
+        clasifTrainErrValue,
+        clasifValidationErrValue,
+        clasifTestErrValue,
+    ] = map(float, line.split())
     stochasticMse.append(stochasticMseValue)
     trainMse.append(trainMseValue)
     validationMse.append(validationMseValue)

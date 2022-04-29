@@ -7,7 +7,7 @@ import glob
 import subprocess
 
 fileStem = sys.argv[1]
-if("--run" in sys.argv):
+if "--run" in sys.argv:
     subprocess.run(["bp", fileStem])
 inputFile = open(fileStem + ".mse", "r")
 
@@ -23,7 +23,15 @@ epochCount = [0]
 epochSaveCount = 1
 
 for line in inputFile.readlines():
-    [stochasticMseValue, trainMseValue, validationMseValue, testMseValue, clasifTrainErrValue, clasifValidationErrValue, clasifTestErrValue] = map(float, line.split())
+    [
+        stochasticMseValue,
+        trainMseValue,
+        validationMseValue,
+        testMseValue,
+        clasifTrainErrValue,
+        clasifValidationErrValue,
+        clasifTestErrValue,
+    ] = map(float, line.split())
     stochasticMse.append(stochasticMseValue)
     trainMse.append(trainMseValue)
     validationMse.append(validationMseValue)
@@ -89,7 +97,7 @@ plt.plot(
 )
 
 plt.title("Dataset: " + fileStem)
-plt.xticks(x[::step], [val - 1 for val in x[::step] ])
+plt.xticks(x[::step], [val - 1 for val in x[::step]])
 plt.xlabel("Epochs")
 plt.ylabel("Error")
 plt.legend()
@@ -97,7 +105,7 @@ plt.show()
 # plt.savefig(fname="errorGraph")
 
 # Cleanup.
-if("--clean" in sys.argv):
+if "--clean" in sys.argv:
     subprocess.run(["rm"] + glob.glob("*.wts"))
     subprocess.run(["rm", fileStem + ".predic"])
     subprocess.run(["rm", fileStem + ".mse"])

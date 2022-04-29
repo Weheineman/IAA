@@ -21,7 +21,15 @@ for batchSize in batchSizeList:
     validationMse = []
     testMse = []
     for line in inputFile.readlines():
-        [stochasticMseValue, trainMseValue, validationMseValue, testMseValue, clasifTrainErrValue, clasifValidationErrValue, clasifTestErrValue] = map(float, line.split())
+        [
+            stochasticMseValue,
+            trainMseValue,
+            validationMseValue,
+            testMseValue,
+            clasifTrainErrValue,
+            clasifValidationErrValue,
+            clasifTestErrValue,
+        ] = map(float, line.split())
         trainMse.append(trainMseValue)
         testMse.append(testMseValue)
         epochCount.append(epochCount[-1] + epochSaveCount)

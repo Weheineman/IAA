@@ -16,7 +16,9 @@ for fileStem in fileStems:
     trainErrorList = []
     testErrorList = []
     for dummy in range(len(dimensionList)):
-        [d, trainErr, testErr] = [float(value) for value in inputFile.readline().split()]
+        [d, trainErr, testErr] = [
+            float(value) for value in inputFile.readline().split()
+        ]
         trainErrorList.append(trainErr)
         testErrorList.append(testErr)
     trainErrorListList.append(trainErrorList)

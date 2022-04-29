@@ -10,7 +10,7 @@ y = []
 klassList = []
 
 for line in inputFile.readlines():
-    [xCoord, yCoord, klass] = map(float, line.split('\t'))
+    [xCoord, yCoord, klass] = map(float, line.split("\t"))
     x.append(xCoord)
     y.append(yCoord)
     klassList.append(klass)

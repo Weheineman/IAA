@@ -196,11 +196,13 @@ class NaiveBayes:
     def predict_class_case_list(
         self, caseList: pd.DataFrame, outputFile: str = ""
     ) -> float:
-        features = caseList.iloc[:, :self.featCount]
-        caseList["predic"] = [self.predicted_class(list(case)) for (_, case) in features.iterrows()]
+        features = caseList.iloc[:, : self.featCount]
+        caseList["predic"] = [
+            self.predicted_class(list(case)) for (_, case) in features.iterrows()
+        ]
         # El error es la cantidad de "predic" distintos de "target" sobre la cantidad de casos.
         clasifError = caseList["target"].ne(caseList["predic"]).sum() / len(caseList)
-        
+
         if len(outputFile):
             caseList.to_csv(outputFile)
 

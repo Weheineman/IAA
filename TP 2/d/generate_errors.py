@@ -40,19 +40,25 @@ for fileStem in fileStems:
             completed = subprocess.run(
                 ["bp_discrete_err", fileStem], capture_output=True, text=True
             )
-            [trainError, testError] = [float(value) for value in completed.stdout.split()]
+            [trainError, testError] = [
+                float(value) for value in completed.stdout.split()
+            ]
             trainErrorList.append(trainError)
             testErrorList.append(testError)
 
         # Write: dimension trainingError testError
         trainErrorList.sort()
         testErrorList.sort()
-        medianIndex = iterationCount//2
-        medianFile.write(f"{d} {trainErrorList[medianIndex]} {testErrorList[medianIndex]}\n")
-        avgFile.write(f"{d} {sum(trainErrorList)/len(trainErrorList)} {sum(testErrorList)/len(testErrorList)}\n")
+        medianIndex = iterationCount // 2
+        medianFile.write(
+            f"{d} {trainErrorList[medianIndex]} {testErrorList[medianIndex]}\n"
+        )
+        avgFile.write(
+            f"{d} {sum(trainErrorList)/len(trainErrorList)} {sum(testErrorList)/len(testErrorList)}\n"
+        )
 
 # Cleanup.
 cleanupExtensions = [".names", ".data", ".test", ".mse", ".predic"]
 for fileStem in fileStems:
     for extension in cleanupExtensions:
-        subprocess.run(["rm",  fileStem + extension])
+        subprocess.run(["rm", fileStem + extension])

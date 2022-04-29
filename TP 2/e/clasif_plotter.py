@@ -16,7 +16,15 @@ epochCount = [0]
 epochSaveCount = 10
 
 for line in inputFile.readlines():
-    [stochasticMseValue, trainMseValue, validationMseValue, testMseValue, clasifTrainErrValue, clasifValidationErrValue, clasifTestErrValue] = map(float, line.split())
+    [
+        stochasticMseValue,
+        trainMseValue,
+        validationMseValue,
+        testMseValue,
+        clasifTrainErrValue,
+        clasifValidationErrValue,
+        clasifTestErrValue,
+    ] = map(float, line.split())
     clasifTrainErr.append(clasifTrainErrValue)
     clasifValidationErr.append(clasifValidationErrValue)
     clasifTestErr.append(clasifTestErrValue)

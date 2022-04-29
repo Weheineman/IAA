@@ -44,4 +44,4 @@ for fileStem in fileStems:
 cleanupExtensions = [".tree", ".unpruned", ".names", ".prediction", ".data", ".test"]
 for fileStem in fileStems:
     for extension in cleanupExtensions:
-        subprocess.run(["rm",  fileStem + extension])
+        subprocess.run(["rm", fileStem + extension])
