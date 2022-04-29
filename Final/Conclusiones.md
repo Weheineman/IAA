@@ -124,3 +124,65 @@ Auch. Algo me dice que los features no tienen distribución normal (o son fuerte
 | SVM Polinomial | 0.33211 | 0.06567             |
 | Decision Tree  | 0.26765 | 0.05839             |
 | Naive Bayes    | 0.53670 | 0.07701             |
+
+# Ejercicio b
+Hice un script `t_test.py`, una modificación de `err_estimator.py`.
+
+## Decision Tree vs. Naive Bayes
+Parámetros de `t_test.py`:
+```python
+file_stem = "BBBs"
+estimator_a = GaussianNB()
+estimator_b = DecisionTreeClassifier(criterion="entropy")
+n_splits = 10
+table_value = 2.26 # t_{N, v} for n=95% and v=9
+param_grid_a = {}
+param_grid_b = {}
+```
+
+```
+Delta (mean): 0.2765389082462254
+Delta error: 0.060841796948349076
+```
+
+Si entendí bien lo que dice Mitchell, con 95% de confidencia podemos afirmar que la diferencia de error de test entre Decision Tree y Naive Bayes está en el intervalo (aproximado) `[0.270, 0.282]`. O sea que hay una diferencia grandísima (lo cual uno intuye al ver los números en el ejercicio anterior).
+
+## Decision Tree vs. SVM Lineal
+
+Parámetros de `t_test.py`:
+```python
+file_stem = "BBBs"
+estimator_a = SVC(kernel="poly", degree=1)
+estimator_b = DecisionTreeClassifier(criterion="entropy")
+n_splits = 10
+table_value = 2.26 # t_{N, v} for n=95% and v=9
+param_grid_a = {"C": np.arange(3, 40, 0.5)}
+param_grid_b = {}
+```
+
+```
+Delta (mean): 0.08403019744483158
+Delta error: 0.05031468153731031
+```
+
+¡Da positivo de nuevo! Pero con un error esperado mucho más chico. Tiene sentido. Siento mi tristeza del apartado a justificada con un 95% de confidencia.
+
+## SVM Lineal vs. SVM Polinomial
+Quiero que un t-test me de negativo. A ver si sale.
+
+```python
+file_stem = "BBBs"
+estimator_a = SVC(kernel="poly")
+estimator_b = SVC(kernel="poly", degree=1)
+n_splits = 10
+table_value = 2.26 # t_{N, v} for n=95% and v=9
+param_grid_a = {"degree": range(1, 5), "C": np.arange(0.5, 10, 0.1)}
+param_grid_b = {"C": np.arange(3, 40, 0.5)}
+```
+
+```
+Delta (mean): 0.016724738675958185
+Delta error: 0.0227695964446012
+```
+
+Dio negativo, qué bueno. Hasta ahora todos los resultados se corresponden con lo que uno (al menos yo) intuye al ver la tabla del ejercicio anterior.
